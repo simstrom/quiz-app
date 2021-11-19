@@ -7,6 +7,7 @@ const submitBtn = quizContainer.lastElementChild;
 const question = quizContainer.firstElementChild;
 const possibleAnswers = document.querySelectorAll('input[type="radio"]');
 const possibleAnswersText = document.querySelectorAll('label');
+const categoryCards = document.querySelectorAll('.category-card');
 const spinner = document.createElement('div');
 const quizData = [];
 
@@ -16,7 +17,10 @@ let score = 0;
 const loadQuiz = (currentQuestion) => {
     question.innerText = quizData[currentQuestion].question;
     categoryText.innerText = quizData[currentQuestion].category;
-    const allAnswers = shuffleAnswers(quizData[currentQuestion].incorrect_answers, quizData[currentQuestion].correct_answer);
+    const allAnswers = shuffleAnswers(
+        quizData[currentQuestion].incorrect_answers,
+        quizData[currentQuestion].correct_answer
+    );
     for (let i = 0; i < possibleAnswersText.length; i++) {
         possibleAnswersText[i].innerText = allAnswers[i];
     }
@@ -24,17 +28,20 @@ const loadQuiz = (currentQuestion) => {
 
 const shuffleAnswers = (answers, correct) => {
     answers.push(correct);
-    let currentIndex = answers.length, randomIndex;
+    let currentIndex = answers.length,
+        randomIndex;
 
     while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      [answers[currentIndex], answers[randomIndex]] = [
-        answers[randomIndex], answers[currentIndex]];
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [answers[currentIndex], answers[randomIndex]] = [
+            answers[randomIndex],
+            answers[currentIndex],
+        ];
     }
     return answers;
-  }
+};
 
 const getAnswer = () => {
     for (const answer of possibleAnswers) {
@@ -72,7 +79,10 @@ const changeContentSmooth = async (content) => {
 submitBtn.addEventListener('click', () => {
     const answer = getAnswer();
     if (answer) {
-        if (answer.nextElementSibling.innerText === quizData[currentQuestion].correct_answer) {
+        if (
+            answer.nextElementSibling.innerText ===
+            quizData[currentQuestion].correct_answer
+        ) {
             score++;
             console.log(`Correct! Your Score : ${score}`);
         } else {
@@ -96,21 +106,42 @@ startBtn.addEventListener('click', async () => {
     await fetchQuizQuestions();
     startState.style.display = 'none';
     loadQuizState();
-    loadQuiz(currentQuestion);  
+    loadQuiz(currentQuestion);
 });
 
-const fetchQuizQuestions = async () => {
+categoryCards.forEach((card) => {
+    card.addEventListener('click', async () => {
+        const AllIDs = await axios.get('https://opentdb.com/api_category.php');
+        for (const category of AllIDs.data.trivia_categories) {
+            if (category.name.includes(card.id)) {
+                await fetchQuizQuestions(category.id);
+                break;
+            }
+        }
+        startState.style.display = 'none';
+        console.log(`Showing questions for ${card.id}`);
+        loadQuizState();
+        loadQuiz(currentQuestion);
+    });
+});
+
+const fetchQuizQuestions = async (category) => {
+    let res = undefined;
     try {
-        const res = await axios.get('https://opentdb.com/api.php?amount=10&type=multiple');
+        if (category) {
+            res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`);
+        } else {
+            res = await axios.get('https://opentdb.com/api.php?amount=10&type=multiple');
+        }
         setQuizData(res.data.results);
     } catch (error) {
-        console.log("Error Fetching Questions!", error);
+        console.log('Error Fetching Questions!', error);
         // Implement Error State, like a reload button or smthng.
     }
-}
+};
 
 const setQuizData = (questionList) => {
     for (const questionObj of questionList) {
         quizData.push(questionObj);
     }
-}
+};

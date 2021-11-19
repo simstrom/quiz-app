@@ -69,6 +69,9 @@ h3 {
     display: none;
 }
 
+/* ===============  */
+/* CATEGORY STYLES  */
+/* =============== */
 .categories {
     display: flex;
     flex-wrap: wrap;
@@ -86,7 +89,6 @@ h3 {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    background-color: #667eea;
     border: 2px solid white;
     border-radius: 5px;
 }
@@ -96,27 +98,27 @@ h3 {
     margin-bottom: 1rem;
 }
 
-#general {
+#General {
     background-color: #8d5de7;
     transition: all 0.2s ease;
 }
 
 .fa-brain {
-    color: #4c327e;
+    color: #5e3d9c;
 }
 
-#general:hover {
+#General:hover {
     background-color: #a380e2;
     transform: scale(1.02);
     cursor: pointer;
 }
 
-#science {
+#Science {
     background-color: #f1a34a;
     transition: all 0.2s ease;
 }
 
-#science:hover {
+#Science:hover {
     background-color: #ecb474;
     transform: scale(1.02);
     cursor: pointer;
@@ -126,12 +128,12 @@ h3 {
     color: #af722d;
 }
 
-#sports {
+#Sports {
  background-color: #62bfe7;
  transition: all 0.2s ease;
 }
 
-#sports:hover {
+#Sports:hover {
     background-color: #80c7e6;
     transform: scale(1.02);
     cursor: pointer;
@@ -141,12 +143,12 @@ h3 {
     color: #3e7891;
 }
 
-#celeb {
+#Celeb {
     background-color: #d574e9;
     transition: all 0.2s ease;
 }
 
-#celeb:hover {
+#Celeb:hover {
     background-color: #d98fe7;
     transform: scale(1.02);
     cursor: pointer;
@@ -156,12 +158,12 @@ h3 {
     color: #81448d;
 }
 
-#history {
+#History {
     background-color: #EB7F92;
     transition: all 0.2s ease;
 }
 
-#history:hover {
+#History:hover {
     background-color: #e797a6;
     transform: scale(1.02);
     cursor: pointer;
@@ -171,12 +173,12 @@ h3 {
     color: #854752;
 }
 
-#geo {
+#Geo {
     background-color: #64c468;
     transition: all 0.2s ease;
 }
 
-#geo:hover {
+#Geo:hover {
     background-color: #78c27a;
     transform: scale(1.02);
     cursor: pointer;
@@ -191,6 +193,7 @@ h3 {
     font-size: .9rem;
     margin-bottom: .5rem;
 }
+/* ========END OF CATEGORY STYLES========== */
 
 .answer-alts {
     list-style: none;
@@ -236,6 +239,9 @@ h3 {
     cursor: pointer;
 }
 
+/* ========================= */
+/* LOADING SPINNER ANIMATION */
+/* ========================= */
 .lds-dual-ring {
     display: inline-block;
     width: 80px;
