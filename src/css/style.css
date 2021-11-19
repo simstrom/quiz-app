@@ -38,12 +38,37 @@ h3 {
     margin: 1rem 0 3rem 2rem;
 }
 
-.category {
-    margin: 2rem 0 -1rem 2rem;
+.quiz-info {
+    width: 100%;
     order: -1;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem 0 2rem;
+}
+
+.quiz-info > p {
+    /* margin: 2rem 0 -1rem 2rem; */
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 5px;
+    color: #667eea;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding-left: 1rem;
+    align-self: flex-end;
+    text-align: end;
+}
+
+.status p {
+    color: #848c92;
+}
+
+.status span {
+    font-weight: bold;
     color: #667eea;
 }
 
@@ -278,6 +303,12 @@ h3 {
     }
   }
 
+  @media only screen and (max-width: 510px) {    
+    .status {
+        min-width: 50%;
+    }
+  }
+
   @media only screen and (max-width: 440px) {    
     .category-text {
         font-size: .8rem;
@@ -290,10 +321,10 @@ h3 {
     }
 
     h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
-    .category {
+    .category, .status {
         font-size: .9rem;
     }
 

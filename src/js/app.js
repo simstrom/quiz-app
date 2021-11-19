@@ -2,7 +2,7 @@ const STD_DELAY = 500;
 const startBtn = document.querySelector('#start-btn');
 const startState = document.querySelector('#start');
 const quizContainer = document.querySelector('#question-box');
-const categoryText = quizContainer.children[1];
+const quizInfo = quizContainer.children[1];
 const submitBtn = quizContainer.lastElementChild;
 const question = quizContainer.firstElementChild;
 const possibleAnswers = document.querySelectorAll('input[type="radio"]');
@@ -16,7 +16,9 @@ let score = 0;
 
 const loadQuiz = (currentQuestion) => {
     question.innerText = quizData[currentQuestion].question;
-    categoryText.innerText = quizData[currentQuestion].category;
+    quizInfo.firstElementChild.innerText = quizData[currentQuestion].category;
+    quizInfo.lastElementChild.firstElementChild.innerHTML = `Question: <b>${currentQuestion + 1} / ${quizData.length}</b>`
+    quizInfo.lastElementChild.lastElementChild.innerHTML = `Score: <span>${score}</span>`
     const allAnswers = shuffleAnswers(
         quizData[currentQuestion].incorrect_answers,
         quizData[currentQuestion].correct_answer
@@ -119,7 +121,6 @@ categoryCards.forEach((card) => {
             }
         }
         startState.style.display = 'none';
-        console.log(`Showing questions for ${card.id}`);
         loadQuizState();
         loadQuiz(currentQuestion);
     });
