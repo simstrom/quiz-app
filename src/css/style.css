@@ -21,6 +21,17 @@ h2 {
     margin: 2rem 2rem 1rem 2rem;
 }
 
+#start h2, #start p {
+    align-self: center;
+}
+
+#start > p {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: 500;
+    color: #848c92;
+}
+
 h3 {
     font-size: 1.3rem;
     letter-spacing: 5px;
@@ -56,6 +67,129 @@ h3 {
 
 .hidden {
     display: none;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
+    justify-content: space-around;
+    gap: 0.1rem;
+    margin: 2rem;
+}
+
+.category-card {
+    min-width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #667eea;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.fas {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#general {
+    background-color: #8d5de7;
+    transition: all 0.2s ease;
+}
+
+.fa-brain {
+    color: #4c327e;
+}
+
+#general:hover {
+    background-color: #a380e2;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+#science {
+    background-color: #f1a34a;
+    transition: all 0.2s ease;
+}
+
+#science:hover {
+    background-color: #ecb474;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.fa-dna {
+    color: #af722d;
+}
+
+#sports {
+ background-color: #62bfe7;
+ transition: all 0.2s ease;
+}
+
+#sports:hover {
+    background-color: #80c7e6;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.fa-running {
+    color: #3e7891;
+}
+
+#celeb {
+    background-color: #d574e9;
+    transition: all 0.2s ease;
+}
+
+#celeb:hover {
+    background-color: #d98fe7;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.fa-camera {
+    color: #81448d;
+}
+
+#history {
+    background-color: #EB7F92;
+    transition: all 0.2s ease;
+}
+
+#history:hover {
+    background-color: #e797a6;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.fa-book {
+    color: #854752;
+}
+
+#geo {
+    background-color: #64c468;
+    transition: all 0.2s ease;
+}
+
+#geo:hover {
+    background-color: #78c27a;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.fa-map-marker-alt {
+ color: #408042;
+}
+
+.category-text {
+    color: white;
+    font-size: .9rem;
+    margin-bottom: .5rem;
 }
 
 .answer-alts {

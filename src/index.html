@@ -8,16 +8,39 @@
         <link rel="stylesheet" href="css/reset.css" />
         <link rel="stylesheet" href="css/style.css" />
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://kit.fontawesome.com/806444f430.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="main-box" id="start">
-            <h2 id="question">Welcome to the Quiz!</h2>
-            <ul class="answer-alts">
-                <li><p>Begin the quiz by pressing the button below.</p></li>
-                <li><p>You will get <b>10 questions</b> of varying category and difficulty.</p></li>
-                <li><p>Try your best and <em>good luck!</em></p></li>
-            </ul>
-            <button class="primary-btn" id="start-btn">Start Quiz</button>
+            <h2 id="question">Welcome to Super Trivia!</h2>
+            <p>Choose a category</p>
+            <div class="categories">
+                <div class="category-card" id="general">
+                    <i class="fas fa-brain"></i>
+                    <p class="category-text">General Knowledge</p>
+                </div>
+                <div class="category-card" id="science">
+                    <i class="fas fa-dna"></i>
+                    <p class="category-text">Science & Nature</p>
+                </div>
+                <div class="category-card" id="sports">
+                    <i class="fas fa-running"></i>
+                    <p class="category-text">Sports</p>
+                </div>
+                <div class="category-card" id="history">
+                    <i class="fas fa-book"></i>
+                    <p class="category-text">History</p>
+                </div>
+                <div class="category-card" id="geo">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p class="category-text">Geography</p>
+                </div>
+                <div class="category-card" id="celeb">
+                    <i class="fas fa-camera"></i>
+                    <p class="category-text">Celebrities</p>
+                </div>
+            </div>
+            <button class="primary-btn" id="start-btn">All Categories</button>
         </div>
         <div class="main-box hidden" id="question-box">
             <h2 id="question">1. Question?</h2>
