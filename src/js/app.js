@@ -1,8 +1,9 @@
 
-const submitBtn = document.querySelector('#answer');
+const container = document.querySelector('.main-box');
+const submitBtn = container.lastElementChild;
+const question = container.firstElementChild;
 const possibleAnswers = document.querySelectorAll('input[type="radio"]')
 const possibleAnswersText = document.querySelectorAll('label')
-const question = document.querySelector('#question')
 
 const quizData = [
     {
@@ -68,6 +69,12 @@ const getAnswer = () => {
     return null;
 }
 
+const loadEndState = () => {
+    container.innerHTML = `<h2>Your Score</h2>
+    <h3>${score} / ${quizData.length}</h3>
+    <button onclick="location.reload()" class="primary-btn">Try Again</button>`
+}
+
 submitBtn.addEventListener('click', () => {
     const answer = getAnswer();
     if (answer) {
@@ -78,11 +85,13 @@ submitBtn.addEventListener('click', () => {
             console.log(`Wrong! Your Score : ${score}`);
         }
         currentQuestion++;
-        if (currentQuestion === quizData.length) {
-            alert('No more questions!')
-            location.reload();
+        if (currentQuestion < quizData.length) {
+            loadQuiz(currentQuestion);
+        } else {
+            loadEndState();
+            // alert('No more questions!')
+            // location.reload();
         }
-        loadQuiz(currentQuestion);
     }
 })
 
