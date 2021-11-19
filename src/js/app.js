@@ -2,50 +2,39 @@ const STD_DELAY = 500;
 const startBtn = document.querySelector('#start-btn');
 const startState = document.querySelector('#start');
 const quizContainer = document.querySelector('#question-box');
+const categoryText = quizContainer.children[1];
 const submitBtn = quizContainer.lastElementChild;
 const question = quizContainer.firstElementChild;
 const possibleAnswers = document.querySelectorAll('input[type="radio"]');
 const possibleAnswersText = document.querySelectorAll('label');
 const spinner = document.createElement('div');
+const quizData = [];
 
-const quizData = [
-    {
-        question: 'What is the abbreviation of Laughing out Loud?',
-        answers: ['lol', 'lmfao', 'rofl', 'omg'],
-        // a : 'Lol',
-        // b: 'Lmfao',
-        // c: 'Rofl',
-        // d: 'Omg',
-        correct: 'a',
-    },
-    {
-        question: 'Abbreviation of Oh My God?',
-        answers: ['lol', 'lmfao', 'rofl', 'omg'],
-        // a : 'Lol',
-        // b: 'Lmfao',
-        // c: 'Rofl',
-        // d: 'Omg',
-        correct: 'd',
-    },
-    {
-        question: 'Abbreviation of Rofl?',
-        answers: ['lol', 'lmfao', 'rofl', 'omg'],
-        // a : 'Lol',
-        // b: 'Lmfao',
-        // c: 'Rofl',
-        // d: 'Omg',
-        correct: 'c',
-    },
-];
 let currentQuestion = 0;
 let score = 0;
 
 const loadQuiz = (currentQuestion) => {
     question.innerText = quizData[currentQuestion].question;
+    categoryText.innerText = quizData[currentQuestion].category;
+    const allAnswers = shuffleAnswers(quizData[currentQuestion].incorrect_answers, quizData[currentQuestion].correct_answer);
     for (let i = 0; i < possibleAnswersText.length; i++) {
-        possibleAnswersText[i].innerText = quizData[currentQuestion].answers[i];
+        possibleAnswersText[i].innerText = allAnswers[i];
     }
 };
+
+const shuffleAnswers = (answers, correct) => {
+    answers.push(correct);
+    let currentIndex = answers.length, randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [answers[currentIndex], answers[randomIndex]] = [
+        answers[randomIndex], answers[currentIndex]];
+    }
+    return answers;
+  }
 
 const getAnswer = () => {
     for (const answer of possibleAnswers) {
@@ -83,7 +72,7 @@ const changeContentSmooth = async (content) => {
 submitBtn.addEventListener('click', () => {
     const answer = getAnswer();
     if (answer) {
-        if (answer.value === quizData[currentQuestion].correct) {
+        if (answer.nextElementSibling.innerText === quizData[currentQuestion].correct_answer) {
             score++;
             console.log(`Correct! Your Score : ${score}`);
         } else {
@@ -103,8 +92,25 @@ submitBtn.addEventListener('click', () => {
     }
 });
 
-startBtn.addEventListener('click', () => {
+startBtn.addEventListener('click', async () => {
+    await fetchQuizQuestions();
     startState.style.display = 'none';
     loadQuizState();
-    loadQuiz(currentQuestion);
+    loadQuiz(currentQuestion);  
 });
+
+const fetchQuizQuestions = async () => {
+    try {
+        const res = await axios.get('https://opentdb.com/api.php?amount=10&type=multiple');
+        setQuizData(res.data.results);
+    } catch (error) {
+        console.log("Error Fetching Questions!", error);
+        // Implement Error State, like a reload button or smthng.
+    }
+}
+
+const setQuizData = (questionList) => {
+    for (const questionObj of questionList) {
+        quizData.push(questionObj);
+    }
+}
