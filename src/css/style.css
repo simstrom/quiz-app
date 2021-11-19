@@ -40,6 +40,11 @@ h3 {
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 6px 6px rgba(0,0,0,0.2);
+    transition: opacity .5s ease-in-out;
+}
+
+.fade {
+    opacity: 0;
 }
 
 .hidden {
@@ -66,6 +71,10 @@ h3 {
     color: gray;
 }
 
+.correct {
+    color: #667eea;
+}
+
 .primary-btn {
     display: block;
     width: 100%;
@@ -85,3 +94,29 @@ h3 {
     background-color: #8196f3;
     cursor: pointer;
 }
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #667eea transparent #667eea transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
