@@ -1,7 +1,9 @@
 
-const container = document.querySelector('.main-box');
-const submitBtn = container.lastElementChild;
-const question = container.firstElementChild;
+const startBtn = document.querySelector('#start-btn');
+const startState = document.querySelector('#start')
+const quizContainer = document.querySelector('#question-box');
+const submitBtn = quizContainer.lastElementChild;
+const question = quizContainer.firstElementChild;
 const possibleAnswers = document.querySelectorAll('input[type="radio"]')
 const possibleAnswersText = document.querySelectorAll('label')
 
@@ -69,8 +71,12 @@ const getAnswer = () => {
     return null;
 }
 
+const loadQuizState = () => {
+    quizContainer.style.display = 'flex';
+}
+
 const loadEndState = () => {
-    container.innerHTML = `<h2>Your Score</h2>
+    quizContainer.innerHTML = `<h2>Your Score</h2>
     <h3>${score} / ${quizData.length}</h3>
     <button onclick="location.reload()" class="primary-btn">Try Again</button>`
 }
@@ -95,6 +101,8 @@ submitBtn.addEventListener('click', () => {
     }
 })
 
-
-
-loadQuiz(currentQuestion);
+startBtn.addEventListener('click', () => {
+    startState.style.display = 'none';
+    loadQuizState();
+    loadQuiz(currentQuestion);
+})

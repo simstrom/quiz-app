@@ -9,7 +9,16 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <div class="main-box">
+        <div class="main-box" id="start">
+            <h2 id="question">Welcome to the Quiz!</h2>
+            <ul class="answer-alts">
+                <li><p>Begin the quiz by pressing the button below.</p></li>
+                <li><p>You will get <b>10 questions</b> of varying category and difficulty.</p></li>
+                <li><p>Try your best and <em>good luck!</em></p></li>
+            </ul>
+            <button class="primary-btn" id="start-btn">Start Quiz</button>
+        </div>
+        <div class="main-box hidden" id="question-box">
             <h2 id="question">1. Question?</h2>
             <ul class="answer-alts">
                 <li>
