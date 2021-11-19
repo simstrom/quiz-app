@@ -1,4 +1,4 @@
-const STD_DELAY = 500;
+const STD_DELAY = 1000;
 const startBtn = document.querySelector('#start-btn');
 const startState = document.querySelector('#start');
 const quizContainer = document.querySelector('#question-box');
@@ -9,6 +9,9 @@ const possibleAnswers = document.querySelectorAll('input[type="radio"]');
 const possibleAnswersText = document.querySelectorAll('label');
 const categoryCards = document.querySelectorAll('.category-card');
 const spinner = document.createElement('div');
+const feedback = document.querySelector('.feedback-overlay');
+const ERROR_ICON = 'fa-times-circle';
+const ERROR_COLOR = '#bd7272de';
 const quizData = [];
 
 let currentQuestion = 0;
@@ -17,8 +20,10 @@ let score = 0;
 const loadQuiz = (currentQuestion) => {
     question.innerText = quizData[currentQuestion].question;
     quizInfo.firstElementChild.innerText = quizData[currentQuestion].category;
-    quizInfo.lastElementChild.firstElementChild.innerHTML = `Question: <b>${currentQuestion + 1} / ${quizData.length}</b>`
-    quizInfo.lastElementChild.lastElementChild.innerHTML = `Score: <span>${score}</span>`
+    quizInfo.lastElementChild.firstElementChild.innerHTML = `Question: <b>${
+        currentQuestion + 1
+    } / ${quizData.length}</b>`;
+    quizInfo.lastElementChild.lastElementChild.innerHTML = `Score: <span>${score}</span>`;
     const allAnswers = shuffleAnswers(
         quizData[currentQuestion].incorrect_answers,
         quizData[currentQuestion].correct_answer
@@ -58,10 +63,8 @@ const getAnswer = () => {
 const loadQuizState = () => {
     spinner.classList.add('lds-dual-ring');
     document.body.prepend(spinner);
-    setTimeout(() => {
-        changeContentSmooth(quizContainer);
-        quizContainer.style.display = 'flex';
-    }, STD_DELAY);
+    changeContentSmooth(quizContainer);
+    quizContainer.style.display = 'flex';
 };
 
 const loadEndState = () => {
@@ -78,7 +81,29 @@ const changeContentSmooth = async (content) => {
     }, STD_DELAY);
 };
 
-submitBtn.addEventListener('click', () => {
+const displayFeedback = async (icon, color) => {
+    if (icon && color) {
+        feedback.style.backgroundColor = color;
+        feedback.firstElementChild.classList.replace('fa-check-circle', icon);
+    }
+    feedback.style.zIndex = 1;
+    feedback.classList.remove('fade');
+    setTimeout(() => {
+        feedback.classList.add('fade');
+        feedback.style.zIndex = -1;
+        if (icon && color) {
+            setTimeout(() => {
+                feedback.style.backgroundColor = '#72bd74de';
+                feedback.firstElementChild.classList.replace(
+                    icon,
+                    'fa-check-circle'
+                );
+            }, STD_DELAY);
+        }
+    }, STD_DELAY);
+};
+
+submitBtn.addEventListener('click', async () => {
     const answer = getAnswer();
     if (answer) {
         if (
@@ -87,19 +112,21 @@ submitBtn.addEventListener('click', () => {
         ) {
             score++;
             console.log(`Correct! Your Score : ${score}`);
+            await displayFeedback();
         } else {
             console.log(`Wrong! Your Score : ${score}`);
+            await displayFeedback(ERROR_ICON, ERROR_COLOR);
         }
         currentQuestion++;
         changeContentSmooth(quizContainer);
         if (currentQuestion < quizData.length) {
             setTimeout(() => {
                 loadQuiz(currentQuestion);
-            }, STD_DELAY);
+            }, STD_DELAY / 2);
         } else {
             setTimeout(() => {
                 loadEndState();
-            }, STD_DELAY);
+            }, STD_DELAY / 2);
         }
     }
 });
@@ -130,9 +157,13 @@ const fetchQuizQuestions = async (category) => {
     let res = undefined;
     try {
         if (category) {
-            res = await axios.get(`https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`);
+            res = await axios.get(
+                `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`
+            );
         } else {
-            res = await axios.get('https://opentdb.com/api.php?amount=10&type=multiple');
+            res = await axios.get(
+                'https://opentdb.com/api.php?amount=10&type=multiple'
+            );
         }
         setQuizData(res.data.results);
     } catch (error) {
