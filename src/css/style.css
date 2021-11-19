@@ -6,7 +6,7 @@ html {
 
 body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,6 +91,12 @@ h3 {
     padding: 1rem;
     border: 2px solid white;
     border-radius: 5px;
+}
+
+.category-text {
+    color: white;
+    font-size: .9rem;
+    margin-bottom: .5rem;
 }
 
 .fas {
@@ -187,12 +193,6 @@ h3 {
 .fa-map-marker-alt {
  color: #408042;
 }
-
-.category-text {
-    color: white;
-    font-size: .9rem;
-    margin-bottom: .5rem;
-}
 /* ========END OF CATEGORY STYLES========== */
 
 .answer-alts {
@@ -265,5 +265,45 @@ h3 {
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .category-card {
+        min-width: 49%;
+    }
+
+    .main-box {
+        max-width: 90%;
+    }
+  }
+
+  @media only screen and (max-width: 440px) {    
+    .category-text {
+        font-size: .8rem;
+    }
+  }
+
+  @media only screen and (max-width: 410px) {    
+    body {
+        padding: 2rem 0;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .category {
+        font-size: .9rem;
+    }
+
+    .category-text {
+        font-size: .7rem;
+    }
+  }
+
+  @media only screen and (max-width: 370px) {    
+    .category-card {
+        min-width: 100%;
     }
   }
