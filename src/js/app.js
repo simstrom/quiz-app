@@ -18,7 +18,7 @@ let currentQuestion = 0;
 let score = 0;
 
 const loadQuiz = (currentQuestion) => {
-    question.innerText = quizData[currentQuestion].question;
+    question.innerHTML = quizData[currentQuestion].question;
     quizInfo.firstElementChild.innerText = quizData[currentQuestion].category;
     quizInfo.lastElementChild.firstElementChild.innerHTML = `Question: <b>${
         currentQuestion + 1
@@ -29,7 +29,7 @@ const loadQuiz = (currentQuestion) => {
         quizData[currentQuestion].correct_answer
     );
     for (let i = 0; i < possibleAnswersText.length; i++) {
-        possibleAnswersText[i].innerText = allAnswers[i];
+        possibleAnswersText[i].innerHTML = allAnswers[i];
     }
 };
 
@@ -111,10 +111,8 @@ submitBtn.addEventListener('click', async () => {
             quizData[currentQuestion].correct_answer
         ) {
             score++;
-            console.log(`Correct! Your Score : ${score}`);
             await displayFeedback();
         } else {
-            console.log(`Wrong! Your Score : ${score}`);
             await displayFeedback(ERROR_ICON, ERROR_COLOR);
         }
         currentQuestion++;
@@ -175,5 +173,6 @@ const fetchQuizQuestions = async (category) => {
 const setQuizData = (questionList) => {
     for (const questionObj of questionList) {
         quizData.push(questionObj);
+        console.log(questionObj.correct_answer, questionObj.incorrect_answers);
     }
 };
