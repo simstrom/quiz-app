@@ -46,7 +46,7 @@ h3 {
     padding: 1rem 2rem 0 2rem;
 }
 
-.quiz-info > p {
+.quiz-info > p, .feedback-text {
     /* margin: 2rem 0 -1rem 2rem; */
     font-weight: 500;
     text-transform: uppercase;
@@ -87,7 +87,7 @@ h3 {
 }
 
 .feedback-overlay {
-    opacity: 1;
+    /* opacity: 1; */
     z-index: -1;
     position: absolute;
     text-align: center;
@@ -96,13 +96,37 @@ h3 {
     background-color: #72bd74de;
     top: 0;
     left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transition: all 1s ease;
 }
 
-.feedback {
-    margin-top: 45vh;
+.feedback-icon {
+    margin-bottom: 1rem;
     color: white;
     font-size: 3rem;
+}
+
+.feedback-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.feedback-text:last-of-type {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    min-width: 30%;
+    max-width: 80%;
+    background-color: rgba(48, 48, 48, 0.1);
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.feedback-answer {
+    color: white;
 }
 
 .fade {

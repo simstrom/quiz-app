@@ -85,6 +85,8 @@ const displayFeedback = async (icon, color) => {
     if (icon && color) {
         feedback.style.backgroundColor = color;
         feedback.firstElementChild.classList.replace('fa-check-circle', icon);
+        feedback.lastElementChild.innerHTML = `Correct:<br><span class="feedback-answer">${quizData[currentQuestion].correct_answer}</span>`
+        feedback.lastElementChild.classList.remove('hidden');
     }
     feedback.style.zIndex = 1;
     feedback.classList.remove('fade');
@@ -98,6 +100,7 @@ const displayFeedback = async (icon, color) => {
                     icon,
                     'fa-check-circle'
                 );
+                feedback.lastElementChild.classList.add('hidden');
             }, STD_DELAY);
         }
     }, STD_DELAY);
@@ -173,6 +176,5 @@ const fetchQuizQuestions = async (category) => {
 const setQuizData = (questionList) => {
     for (const questionObj of questionList) {
         quizData.push(questionObj);
-        console.log(questionObj.correct_answer, questionObj.incorrect_answers);
     }
 };
