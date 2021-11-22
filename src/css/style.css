@@ -21,7 +21,8 @@ h2 {
     margin: 2rem 2rem 1rem 2rem;
 }
 
-#start h2, #start p {
+#start h2,
+#start p {
     align-self: center;
 }
 
@@ -46,7 +47,8 @@ h3 {
     padding: 1rem 2rem 0 2rem;
 }
 
-.quiz-info > p, .feedback-text {
+.quiz-info > p,
+.feedback-text {
     /* margin: 2rem 0 -1rem 2rem; */
     font-weight: 500;
     text-transform: uppercase;
@@ -81,8 +83,8 @@ h3 {
     align-items: flex-start;
     justify-content: center;
     border-radius: 10px;
-    box-shadow: 0 6px 6px rgba(0,0,0,0.2);
-    transition: opacity .5s ease-in-out;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease-in-out;
     padding-top: 1rem;
 }
 
@@ -163,8 +165,8 @@ h3 {
 
 .category-text {
     color: white;
-    font-size: .9rem;
-    margin-bottom: .5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
 .fas {
@@ -203,8 +205,8 @@ h3 {
 }
 
 #Sports {
- background-color: #62bfe7;
- transition: all 0.2s ease;
+    background-color: #62bfe7;
+    transition: all 0.2s ease;
 }
 
 #Sports:hover {
@@ -233,7 +235,7 @@ h3 {
 }
 
 #History {
-    background-color: #EB7F92;
+    background-color: #eb7f92;
     transition: all 0.2s ease;
 }
 
@@ -259,7 +261,7 @@ h3 {
 }
 
 .fa-map-marker-alt {
- color: #408042;
+    color: #408042;
 }
 /* ========END OF CATEGORY STYLES========== */
 
@@ -315,9 +317,9 @@ h3 {
     width: 80px;
     height: 80px;
     position: absolute;
-  }
-  .lds-dual-ring:after {
-    content: " ";
+}
+.lds-dual-ring:after {
+    content: ' ';
     display: block;
     width: 64px;
     height: 64px;
@@ -326,17 +328,17 @@ h3 {
     border: 6px solid #fff;
     border-color: #667eea transparent #667eea transparent;
     animation: lds-dual-ring 1.2s linear infinite;
-  }
-  @keyframes lds-dual-ring {
+}
+@keyframes lds-dual-ring {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-  @media only screen and (max-width: 700px) {
+@media only screen and (max-width: 700px) {
     .category-card {
         min-width: 49%;
     }
@@ -344,40 +346,37 @@ h3 {
     .main-box {
         max-width: 90%;
     }
-  }
+}
 
-  @media only screen and (max-width: 510px) {    
+@media only screen and (max-width: 510px) {
     .status {
         min-width: 50%;
     }
-  }
+}
 
-  @media only screen and (max-width: 440px) {    
+@media only screen and (max-width: 440px) {
     .category-text {
-        font-size: .8rem;
+        font-size: 0.8rem;
     }
-  }
+}
 
-  @media only screen and (max-width: 410px) {    
-    body {
-        padding: 2rem 0;
-    }
-
+@media only screen and (max-width: 410px) {
     h2 {
         font-size: 1.5rem;
     }
 
-    .category, .status {
-        font-size: .9rem;
+    .category,
+    .status {
+        font-size: 0.9rem;
     }
 
     .category-text {
-        font-size: .7rem;
+        font-size: 0.7rem;
     }
-  }
+}
 
-  @media only screen and (max-width: 370px) {    
+@media only screen and (max-width: 370px) {
     .category-card {
         min-width: 100%;
     }
-  }
+}

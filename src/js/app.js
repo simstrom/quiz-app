@@ -69,6 +69,9 @@ const loadQuizState = () => {
 
 const loadEndState = () => {
     quizContainer.innerHTML = `<h2>Your Score</h2>
+    <div class="quiz-info">
+                <p class="category">Quiz Completed!</p>
+    </div>
     <h3>${score} / ${quizData.length}</h3>
     <button onclick="location.reload()" class="primary-btn">Try Again</button>`;
 };
